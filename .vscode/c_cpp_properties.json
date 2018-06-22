@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "AVR",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "E:\\Programming\\Tools\\avr-gcc-8.1.0-x64-mingw"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "${workspaceFolder}",
+                "E:\\Programming\\Tools\\avr-gcc-8.1.0-x64-mingw\\include",
+                "E:\\Programming\\Tools\\avr-gcc-8.1.0-x64-mingw\\avr\\include"
+            ],
+            "defines": [
+                "UNICODE",
+                "_UNICODE",
+                "__AVR_ATmega328P__"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}
