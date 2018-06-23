@@ -26,8 +26,8 @@ AVRDUDE = $(TC_BIN_DIR)/avrdude
 DEFINES = -DF_CPU=$(CLOCK)
 WARNINGS = -Wall
 
-CFLAGS = -c -std=c11 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS)  -fno-exceptions -fno-asynchronous-unwind-tables
-CXXFLAGS = -c -std=c++17 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS)  -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti
+CFLAGS = -c -std=c11 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS) -fno-exceptions -fno-asynchronous-unwind-tables
+CXXFLAGS = -c -std=c++17 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS) -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti
 
 # Define Linker Flags
 LDFLAGS = -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS) -Wl,-Map,$(BIN_DIR)/$(TARGET).map 
@@ -48,32 +48,31 @@ ESC = 					# Escape char
 
 # Define messages
 MSG_TC_VERSION:
-	@echo $(ESC)[1;33m$(TC_NAME)$(ESC)[0m 
-	@if exist $(TC_NAME) then 
+	@echo $(ESC)[1;33m$(TC_NAME)$(ESC)[0m
 
 MSG_COMPILE:
-	@echo $(ESC)[1;33mCompiling [$(SRC_FILES)] in $(SRC_DIR)$(ESC)[0m \
+	@echo $(ESC)[1;33mCompiling [$(SRC_FILES)] in $(SRC_DIR)$(ESC)[0m
 
 MSG_OBJ_ELF:
-	@echo $(ESC)[1;33mLinking [$(OBJ_FILES)] files into $(TARGET).ELF $(ESC)[0m \
+	@echo $(ESC)[1;33mLinking [$(OBJ_FILES)] files into $(TARGET).ELF $(ESC)[0m
 
 MSG_ELF_HEX:
-	@echo $(ESC)[1;33mCopying $(TARGET).ELF to HEX$(ESC)[0m \
+	@echo $(ESC)[1;33mCopying $(TARGET).ELF to HEX$(ESC)[0m
 
 MSG_ELF_LSS:
-	@echo $(ESC)[1;33mCopying $(TARGET).ELF to LSS$(ESC)[0m \
+	@echo $(ESC)[1;33mCopying $(TARGET).ELF to LSS$(ESC)[0m
 
 MSG_ELF_SIZE:
-	@echo $(ESC)[1;33mPrint $(TARGET).ELF size$(ESC)[0m \
+	@echo $(ESC)[1;33mPrint $(TARGET).ELF size$(ESC)[0m
 
 MSG_FLASH_HEX:
-	@echo $(ESC)[1;33mFlashing HEX to $(MCU)$(ESC)[0m \
+	@echo $(ESC)[1;33mFlashing HEX to $(MCU)$(ESC)[0m
 
 MSG_FLASH_FUSE:
-	@echo $(ESC)[1;33mFlashing Fuses on $(MCU)$(ESC)[0m \
+	@echo $(ESC)[1;33mFlashing Fuses on $(MCU)$(ESC)[0m
 
 MSG_CLEAN:
-	@echo $(ESC)[1;33mClean project$(ESC)[0m \
+	@echo $(ESC)[1;33mClean project$(ESC)[0m
 
 # Make commands 
 SRC_FILES ?= $(wildcard $(SRC_DIR)/*.$(LANG))
@@ -122,5 +121,6 @@ install: MSG_FLASH_HEX
 # Flash fuses
 flash_fuse:
 	$(MSG_FLASH_FUSE)
+	@echo Not implemented
 
 .PHONY: all, size, clean, install, flash_fuse
