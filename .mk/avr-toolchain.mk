@@ -26,8 +26,8 @@ AVRDUDE = $(TC_BIN_DIR)/avrdude
 DEFINES = -DF_CPU=$(CLOCK)
 WARNINGS = -Wall
 
-CFLAGS = -c -std=c11 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS)
-CXXFLAGS = -c -std=c++17 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS)
+CFLAGS = -c -std=c11 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS)  -fno-exceptions -fno-asynchronous-unwind-tables
+CXXFLAGS = -c -std=c++17 -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS)  -fno-exceptions -fno-asynchronous-unwind-tables -fno-rtti
 
 # Define Linker Flags
 LDFLAGS = -mmcu=$(MCU) -Os $(DEFINES) $(WARNINGS) -Wl,-Map,$(BIN_DIR)/$(TARGET).map 
