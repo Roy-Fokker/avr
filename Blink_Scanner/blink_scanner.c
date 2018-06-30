@@ -6,10 +6,18 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-static char LEDpins[] = {
+typedef unsigned char pin_no_t;
+typedef volatile unsigned char *port_t;
+
+static pin_no_t LEDpins[] = {
     PD2, PD3, PD4, PD5, PD6,
     PB0, PB1, PB2, PB3, PB4
 };
+
+static void toggle_pin(port_t port, pin_no_t pin)
+{
+    *port ^= (1 << pin);
+}
 
 int main()
 {
@@ -25,20 +33,22 @@ int main()
     {
         if (i != p)
         {
-            if (p < 5)
-            {
-                PORTD ^= (1 << LEDpins[p]);
-            } else {
-                PORTB ^= (1 << LEDpins[p]);
-            }
+            toggle_pin((p < 5) ? &PORTD : &PORTB, LEDpins[p]);
+            // if (p < 5)
+            // {
+            //     PORTD ^= (1 << LEDpins[p]);
+            // } else {
+            //     PORTB ^= (1 << LEDpins[p]);
+            // }
         }
 
-        if (i < 5)
-        {
-            PORTD ^= (1 << LEDpins[i]);
-        } else {
-            PORTB ^= (1 << LEDpins[i]);
-        }
+        toggle_pin((i < 5) ? &PORTD : &PORTB, LEDpins[i]);
+        // if (i < 5)
+        // {
+        //     PORTD ^= (1 << LEDpins[i]);
+        // } else {
+        //     PORTB ^= (1 << LEDpins[i]);
+        // }
 
         p = i;
         if (direction) 
